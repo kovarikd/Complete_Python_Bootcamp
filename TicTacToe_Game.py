@@ -43,9 +43,9 @@ def verify_input(inpt, player):
         ttt_matrix[4][0] = "O"
     elif inpt == "31" and ttt_matrix[4][0] == " " and player == "Player_2":
         ttt_matrix[4][0] = "X"
-    elif inpt == "31" and ttt_matrix[4][0] == " " and player == "Player_1":
+    elif inpt == "32" and ttt_matrix[4][2] == " " and player == "Player_1":
         ttt_matrix[4][2] = "O"
-    elif inpt == "31" and ttt_matrix[4][0] == " " and player == "Player_2":
+    elif inpt == "32" and ttt_matrix[4][2] == " " and player == "Player_2":
         ttt_matrix[4][2] = "X"
     elif inpt == "33" and ttt_matrix[4][4] == " " and player == "Player_1":
         ttt_matrix[4][4] = "O"
@@ -58,8 +58,15 @@ def verify_input(inpt, player):
         return ttt_matrix
 
 
-def game_resoution():
-    if ttt_matrix[0][0] and ttt_matrix[0][2] and ttt_matrix[0][4]:
+def game_resoution(sign, player):
+    if ((ttt_matrix[0][0] == sign and ttt_matrix[0][2] == sign and ttt_matrix[0][4] == sign) or (ttt_matrix[0][0] == sign and ttt_matrix[2][0] == sign and ttt_matrix[4][0] == sign)
+        or (ttt_matrix[0][2] == sign and ttt_matrix[2][2] == sign and ttt_matrix[4][2] == sign) or (ttt_matrix[0][4] == sign and ttt_matrix[2][4] == sign and ttt_matrix[4][4] == sign)
+        or (ttt_matrix[2][0] == sign and ttt_matrix[2][2] == sign and ttt_matrix[2][4] == sign) or (ttt_matrix[4][0] == sign and ttt_matrix[4][2] == sign and ttt_matrix[4][4] == sign)
+        or (ttt_matrix[0][0] == sign and ttt_matrix[2][2] == sign and ttt_matrix[4][4] == sign) or (ttt_matrix[4][0] == sign and ttt_matrix[2][2] == sign and ttt_matrix[0][4] == sign)):
+        print("\n")
+        print("Game over:  {} won the game.".format(player))
+        print_matrix(ttt_matrix)
+        exit(0)
 
 
 def main():
@@ -78,10 +85,12 @@ def main():
         if current_player == "Player_1":
             pick = input("Player 1: Please pick your your field")
             verify_input(pick, current_player)
+            game_resoution("O", current_player)
             current_player = "Player_2"
         else:
-            pick = input("Player 1: Please pick your your field")
+            pick = input("Player 2: Please pick your your field")
             verify_input(pick, current_player)
+            game_resoution("X", current_player)
             current_player = "Player_1"
 
 
