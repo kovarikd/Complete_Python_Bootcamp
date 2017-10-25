@@ -55,7 +55,6 @@ def verify_input(inpt, player):
         print("\n")
         print("OUTPUT:: {}:Invalid input, you wasted your turn.".format(player))
         print("\n")
-        return ttt_matrix
 
 
 def game_resoution(sign, player):
