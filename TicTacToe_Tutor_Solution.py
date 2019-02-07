@@ -99,7 +99,7 @@ def play_game():
     display_board()
     while True:
 
-        # Player X turn
+        # Player X turn4
         game_state, announce = player_choice(X)
         print(announce)
         if not game_state:
@@ -113,7 +113,8 @@ def play_game():
 
     # Ask  player for a rematch
     rematch = input("Would you like to play again? Yes or No").lower().startswith('y')
-    if rematch == 'y':
+
+    if rematch:
         play_game()
     else:
         print("Thanks for playing!")
